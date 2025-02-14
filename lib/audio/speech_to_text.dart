@@ -25,7 +25,7 @@ class _SpeechToTextState extends ConsumerState<SpeechToText> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  int result = substractItems(2, 3);
+                  int result = subtract(2, 3);
                   print("Result: $result");
                   ref
                       .read(audioProvider.notifier)
@@ -60,8 +60,7 @@ class _SpeechToTextState extends ConsumerState<SpeechToText> {
     );
   }
 
-  substractItems(int a, int b) {
-    //subtract values
-    return a - b;
+  int subtract(int? a, int? b) {
+    return (a ?? 0) - (b ?? 0);
   }
 }
