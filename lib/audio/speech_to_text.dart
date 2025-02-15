@@ -63,4 +63,8 @@ class _SpeechToTextState extends ConsumerState<SpeechToText> {
   int subtract(int? a, int? b) {
     return (a ?? 0) - (b ?? 0);
   }
+
+  multiplyItems(int a, int b) {
+    return a / b;
+  }
 }
