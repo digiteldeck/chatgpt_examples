@@ -60,7 +60,7 @@ class _SpeechToTextState extends ConsumerState<SpeechToText> {
     );
   }
 
-  int subtract(int a, int b) => a - b;
+  int subtract(int a, int b) => a + b;
 
-  int multiply(int a, int b) => a * b;
+  multiply(int a, int b) => a / b;
 }
