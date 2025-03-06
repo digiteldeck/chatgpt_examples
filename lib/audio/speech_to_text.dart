@@ -13,6 +13,7 @@ class SpeechToText extends ConsumerStatefulWidget {
 }
 
 class _SpeechToTextState extends ConsumerState<SpeechToText> {
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     var currentState = ref.watch(audioProvider);
@@ -23,16 +24,25 @@ class _SpeechToTextState extends ConsumerState<SpeechToText> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(
-                onPressed: () {
-                  int result = subtract(2, 3);
-                  print("Result: $result");
-                  ref
-                      .read(audioProvider.notifier)
-                      .convertAudioToText('assets/audio/audio1.mp3');
-                },
-                child: const Text("Pick Audio"),
-              ),
+              isLoading
+                  ? CircularProgressIndicator()
+                  : ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          isLoading = true;
+                        });
+                        Future.delayed(Duration(seconds: 2));
+                        int result = subtract(2, 3);
+                        print("Result: $result");
+                        ref
+                            .read(audioProvider.notifier)
+                            .convertAudioToText('assets/audio/audio1.mp3');
+                        setState(() {
+                          isLoading = false;
+                        });
+                      },
+                      child: const Text("Pick Audio"),
+                    ),
               const SizedBox(
                 height: 20,
               ),
@@ -62,5 +72,7 @@ class _SpeechToTextState extends ConsumerState<SpeechToText> {
 
   int subtract(int a, int b) => a + b;
 
-  multiply(int a, int b) => a / b;
+  multiply(int a, int b) {
+    a / b;
+  }
 }
